@@ -98,24 +98,35 @@ function matrixCheck() {
         console.log(checkedArray);
         console.log("   ");
 
-
         console.log(arrResults);
-        console.log("   ");
+
 
     }
+
+
+    console.log("   ");
 
 }
 
 
 
 function sortArr() {
+
+
+    let arrRightLeft = [];
+    let arrResults = [];
     let arr = [
         ["Hello", "world"],
         ["Brad", "came", "to", "dinner", "with", "us"],
         ["He", "loves", "tacos"]
     ];
+    console.log(" 3 Task  ");
+    console.log(arr);
+    console.log("  ");
 
     let count = 0;
+    let lastPoint = 0;
+
 
 
     for (let i = 0; i < arr.length; i++) {
@@ -125,17 +136,64 @@ function sortArr() {
         }
 
         if (count <= 16) {
-            arr[i].push("   *");
-        } else {
-            arr[i].unshift('*   ');
+
+            let str = arr[i].join(" ");
+            arrResults.push("* " + str + "       *");
+            arrRightLeft.push("LEFT");
         }
 
+        if (count > 16) {
+            arrRightLeft.push("RIGHT");
+            let count = 0;
+            for (let k = 0; k < arr[i].length; k++) {
+                count += arr[i][k].length;
+
+
+                if (count > 16) {
+                    lastPoint = k - 1;
+                    let timeArr = [];
+                    for (let f = 0; f < k - 1; f++) {
+                        timeArr.push(arr[i][f]);
+
+
+                    }
+                    let str = timeArr.join(" ");
+                    arrResults.push("*       " + str + " *");
+
+                    count = 0;
+
+
+
+                }
+
+
+
+                if (k == arr[i].length - 1) {
+
+                    let tempArr = [];
+                    for (let l = lastPoint; l < arr[i].length; l++) {
+                        tempArr.push(arr[i][l]);
+                    }
+                    let str = tempArr.join(" ");
+                    arrResults.push("*       " + str + " *");
+                }
+
+            }
+        }
+
+
+
+
         count = 0;
+
     }
 
 
-    console.log(" 3 Task  ");
-    console.log(arr);
+
+
+    console.log(arrResults);
+    console.log(arrRightLeft);
+
 
 }
 
